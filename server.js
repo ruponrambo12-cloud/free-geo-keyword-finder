@@ -1,36 +1,47 @@
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
+const PORT = process.env.PORT || 10000;
+
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
+/* Root route (browser error fix) */
+app.get("/", (req, res) => {
+  res.send("API is running successfully 🚀");
+});
 
-app.get('/geo-keywords', async (req, res) => {
-    const { query, location } = req.query;
+/* Keyword generator API */
+app.post("/api/generate", (req, res) => {
+  const { keyword } = req.body;
 
-    if (!query || !location) {
-        return res.status(400).json({ error: 'Query এবং Location উভয়ই প্রয়োজন।' });
-    }
+  if (!keyword) {
+    return res.status(400).json({ error: "Keyword is required" });
+  }
 
-    try {
-        const response = await axios.get('https://maps.googleapis.com/maps/api/place/textsearch/json', {
-            params: {
-                query: `${query} in ${location}`,
-                key: process.env.GOOGLE_API_KEY
-            }
-        });
+  // TEMP keyword logic (stable test)
+  const data = {
+    keyword: keyword,
+    related_keywords: [
+      `${keyword} tools`,
+      `${keyword} strategy`,
+      `${keyword} examples`,
+      `${keyword} for beginners`,
+      `best ${keyword}`,
+      `how to do ${keyword}`
+    ],
+    questions: [
+      `What is ${keyword}?`,
+      `How does ${keyword} work?`,
+      `Why is ${keyword} important?`,
+      `How to improve ${keyword}?`
+    ]
+  };
 
-        res.json(response.data);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'কিছু ভুল হয়েছে।' });
-    }
+  res.json(data);
 });
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
