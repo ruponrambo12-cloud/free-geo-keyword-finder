@@ -1,4 +1,4 @@
-const API_URL = "https://free-geo-keyword-finder-2.onrender.com/api/generate";
+const API_URL = "https://free-geo-keyword-finder-3.onrender.com/api/generate";
 
 document.getElementById("generateBtn").addEventListener("click", async () => {
   const keyword = document.getElementById("keywordInput").value.trim();
