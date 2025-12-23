@@ -1,25 +1,31 @@
-async function searchGeo() {
-    const keyword = document.getElementById('keyword').value;
-    const location = document.getElementById('location').value;
-    const resDiv = document.getElementById('results');
-    resDiv.innerHTML = 'Loading...';
+const API_URL = "https://free-geo-keyword-finder-2.onrender.com/api/generate";
 
-    try {
-        const response = await fetch(`https://YOUR-RENDER-URL.onrender.com/geo-keywords?query=${keyword}&location=${location}`);
-        const data = await response.json();
+document.getElementById("generateBtn").addEventListener("click", async () => {
+  const keyword = document.getElementById("keywordInput").value.trim();
+  const resultsBox = document.getElementById("results");
 
-        resDiv.innerHTML = '';
-        if(data.results && data.results.length > 0) {
-            data.results.forEach(place => {
-                const div = document.createElement('div');
-                div.textContent = place.name + ' - ' + place.formatted_address;
-                resDiv.appendChild(div);
-            });
-        } else {
-            resDiv.innerHTML = 'কোনো ফলাফল পাওয়া যায়নি।';
-        }
-    } catch (error) {
-        resDiv.innerHTML = 'ডেটা আনার সময় সমস্যা হয়েছে।';
-        console.error(error);
-    }
-}
+  if (!keyword) {
+    alert("Please enter a keyword");
+    return;
+  }
+
+  resultsBox.textContent = "Loading...";
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ keyword })
+    });
+
+    const data = await response.json();
+
+    resultsBox.textContent = JSON.stringify(data, null, 2);
+
+  } catch (error) {
+    resultsBox.textContent = "Failed to fetch data from API";
+    console.error(error);
+  }
+});
