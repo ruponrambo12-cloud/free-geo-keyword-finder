@@ -1,104 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+'html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free GEO Keyword Finder</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset and base styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #1f1c2c, #928dab);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
     }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      text-align: center;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
     input {
       width: 100%;
-      max-width: 500px;
-      padding: 14px 18px;
+      padding: 10px;
       font-size: 16px;
-      border-radius: 12px;
-      border: none;
-      outline: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      background: rgba(255,255,255,0.1);
-      color: #fff;
     }
-
-    input::placeholder {
-      color: #ddd;
-      font-style: italic;
-    }
-
-    input:focus {
-      background: rgba(255,255,255,0.2);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      transform: translateY(-2px);
-    }
-
     button {
-      margin-top: 20px;
-      padding: 12px 24px;
+      margin-top: 10px;
+      padding: 10px 16px;
       font-size: 16px;
-      border: none;
-      border-radius: 12px;
       cursor: pointer;
-      color: #fff;
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
-
-    button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-    }
-
     pre {
-      width: 100%;
-      max-width: 700px;
-      background: rgba(0,0,0,0.6);
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 15px;
+      background: #f4f4f4;
+      padding: 15px;
+      margin-top: 20px;
       white-space: pre-wrap;
-      word-wrap: break-word;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-      color: #ffd700;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    /* Responsive adjustments */
-    @media(max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      input, button {
-        max-width: 100%;
-      }
     }
   </style>
 </head>
@@ -106,25 +32,11 @@
 
   <h1>Free GEO Keyword Finder</h1>
 
-  <input id="keywordInput" placeholder="Enter a keyword (e.g., SEO tools)" />
+  <input id="keywordInput" placeholder="Enter a keyword (e.g. seo tools)" />
   <button id="generateBtn">Generate Keywords</button>
 
-  <pre id="results"></pre>
-
-  <script>
-    const input = document.getElementById('keywordInput');
-    const button = document.getElementById('generateBtn');
-    const results = document.getElementById('results');
-
-    button.addEventListener('click', () => {
-      const keyword = input.value.trim();
-      if(!keyword) {
-        results.textContent = 'Please enter a keyword!';
-        return;
-      }
-      // Mock results for demo
-      results.textContent = `Here are some GEO keywords for "${keyword}":\n\n- ${keyword} near me\n- Best ${keyword} in town\n- Cheap ${keyword} locations\n- ${keyword} services nearby\n- Local ${keyword} experts`;
-    });
+  <pre id="results"></pre>'
+  
   <script src="script.js"></script>
 </body>
 </html>
